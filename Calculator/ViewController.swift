@@ -68,6 +68,25 @@ class ViewController: UIViewController {
     
 
     @IBAction func didPressEqual(_ sender: Any) {
+        if (savedNum == 0) {
+            return
+        }
+        
+        guard let labelInt:Int = Int(labelString) else {
+            return
+        }
+        
+        if (currentMode == .addition) {
+            label.text = "\(savedNum + labelInt)"
+        }
+        
+        if (currentMode == .substraction) {
+            label.text = "\(savedNum - labelInt)"
+        }
+        
+        if (currentMode == .multiplication) {
+            label.text = "\(savedNum * labelInt)"
+        }
         
     }
     
