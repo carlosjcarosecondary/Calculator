@@ -77,15 +77,17 @@ class ViewController: UIViewController {
         }
         
         if (currentMode == .addition) {
-            label.text = "\(savedNum + labelInt)"
-        }
-        
-        if (currentMode == .substraction) {
-            label.text = "\(savedNum - labelInt)"
-        }
-        
-        if (currentMode == .multiplication) {
-            label.text = "\(savedNum * labelInt)"
+            savedNum += labelInt
+            label.text = "\(savedNum)"
+        } else if (currentMode == .substraction) {
+            savedNum -= labelInt
+            label.text = "\(savedNum)"
+        } else if (currentMode == .multiplication) {
+            savedNum *= labelInt
+            label.text = "\(savedNum)"
+        } else if (currentMode == .division) {
+            savedNum /= labelInt
+            label.text = "\(savedNum)"
         }
         
     }
@@ -110,6 +112,7 @@ class ViewController: UIViewController {
         if (currentMode == .not_set){
             savedNum = labelInt
         }
+        
         
         label.text = "\(labelInt)"
     }
