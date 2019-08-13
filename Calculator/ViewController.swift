@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     var savedNum:Int = 0
     var labelString:String = "0"
     var currentMode:modes = .not_set
-    //var lastButtonWasMode:Bool = false
+    var lastButtonWasMode:Bool = false
     
 
     override func viewDidLoad() {
@@ -38,26 +38,32 @@ class ViewController: UIViewController {
     
     
     @IBAction func didPressPlus(_ sender: Any) {
+        changeModes(newMode: .addition)
         
     }
     
     
     @IBAction func didPressMinus(_ sender: Any) {
+        changeModes(newMode: .substraction)
         
     }
     
     
     @IBAction func didPressMultiplication(_ sender: Any) {
-        
+        changeModes(newMode: .multiplication)
     }
     
     
     @IBAction func didPressDivision(_ sender: Any) {
-        
+        changeModes(newMode: .division)
     }
     
     @IBAction func didPressClear(_ sender: Any) {
-        
+        labelString = "0"
+        currentMode = .not_set
+        savedNum = 0
+        label.text = "0"
+        lastButtonWasMode = false
     }
     
 
@@ -67,6 +73,12 @@ class ViewController: UIViewController {
     
     @IBAction func didPressNumber(_ sender: UIButton) {
         let stringValue:String? = sender.titleLabel?.text
+        
+        if (lastButtonWasMode) {
+            lastButtonWasMode = false
+            labelString = "0"
+        }
+        
         labelString = labelString.appending(stringValue!)
         updateText()
     }
@@ -76,12 +88,20 @@ class ViewController: UIViewController {
             return
         }
         
+        if (currentMode == .not_set){
+            savedNum = labelInt
+        }
+        
         label.text = "\(labelInt)"
     }
     
     func changeModes(newMode:modes){
+        if (savedNum == 0) {
+            return
+        }
         
-        
+        currentMode = newMode
+        lastButtonWasMode = true
     }
 
 
