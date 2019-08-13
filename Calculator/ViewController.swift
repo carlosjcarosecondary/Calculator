@@ -62,9 +62,12 @@ class ViewController: UIViewController {
     
 
     @IBAction func didPressEqual(_ sender: Any) {
+        
     }
     
-    
+    @IBAction func didPressNumber(_ sender: UIButton) {
+        
+    }
     
     func updateText(){
         
